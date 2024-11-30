@@ -30,34 +30,6 @@ export default function LoginScreen({ navigation }) {
     }
   };
 
-  const handleDeleteData = async () => {
-    if (!token) {
-      Alert.alert('Erro', 'Você precisa estar autenticado para deletar os dados.');
-      return;
-    }
-  
-    try {
-      const response = await fetch('http://localhost:3000/limpar-dados', {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      const data = await response.json(); // Capture a resposta
-  
-      if (response.ok) {
-        Alert.alert('Sucesso', 'Os dados foram apagados com sucesso.');
-      } else {
-        console.error('Erro ao deletar:', data);
-        Alert.alert('Erro', data.message || 'Erro ao tentar deletar os dados.');
-      }
-    } catch (error) {
-      console.error('Erro ao conectar-se ao servidor:', error);
-      Alert.alert('Erro', 'Erro ao conectar-se ao servidor.');
-    }
-  };  
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
@@ -83,11 +55,6 @@ export default function LoginScreen({ navigation }) {
       {/* Botão de login */}
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
-
-      {/* Botão para apagar os dados */}
-      <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteData}>
-        <Text style={styles.buttonText}>Apagar Dados</Text>
       </TouchableOpacity>
 
       {/* Link para registro */}
