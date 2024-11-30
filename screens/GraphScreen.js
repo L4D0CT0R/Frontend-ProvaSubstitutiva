@@ -88,42 +88,6 @@ export default function GraphScreen({ route }) {
     });
   };
 
-  const handleDeleteData = async () => {
-    Alert.alert(
-      "Confirmar Deletação",
-      "Você tem certeza que deseja limpar todos os dados?",
-      [
-        {
-          text: "Cancelar",
-          style: "cancel",
-        },
-        {
-          text: "Deletar",
-          onPress: async () => {
-            try {
-              const response = await fetch('http://localhost:3000/limpar-dados', {
-                method: 'DELETE',
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              });
-
-              if (response.ok) {
-                Alert.alert("Sucesso", "Dados deletados com sucesso.");
-                setSensorData([]);
-              } else {
-                Alert.alert("Erro", "Falha ao deletar os dados.");
-              }
-            } catch (error) {
-              console.error("Erro ao deletar os dados:", error);
-              Alert.alert("Erro", "Falha na conexão.");
-            }
-          },
-        },
-      ]
-    );
-  };
-
   useEffect(() => {
     const filteredData = filterSensorData(sensorData);
     setSensorData(filteredData);
@@ -270,15 +234,6 @@ export default function GraphScreen({ route }) {
             <Text style={styles.chartTitle}>Umidade</Text>
             {renderChart(chartType, dataUmidade, optionsUmidade)}
           </View>
-        </View>
-
-        {/* Botão para deletar dados do servidor */}
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Deletar Dados do Servidor"
-            onPress={handleDeleteData}
-            color="#ff6347"
-          />
         </View>
       </View>
     </ScrollView>
