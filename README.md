@@ -29,8 +29,8 @@ Certifique-se de que o [Node.js](https://nodejs.org/) e o [Expo CLI](https://doc
 1. Clone este repositório:
 
    ```bash
-    git clone https://github.com/username/repo-name.git
-    cd Backend-Provasubstitutiva
+    https://github.com/L4D0CT0R/Frontend-ProvaSubstitutiva
+    cd Frontend-ProvaSubstitutiva
 
 2. Instalando depêndencias:
     npm install
